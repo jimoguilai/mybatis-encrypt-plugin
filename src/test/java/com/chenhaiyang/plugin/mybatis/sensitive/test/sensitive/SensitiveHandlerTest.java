@@ -9,6 +9,7 @@ public class SensitiveHandlerTest {
     public void test(){
         MobilePhoneSensitiveHandler mobilePhoneSensitiveHandler = new MobilePhoneSensitiveHandler();
         String result = mobilePhoneSensitiveHandler.handle("18233583070");
+//        String result = mobilePhoneSensitiveHandler.handle("");
         System.out.println(result);
     }
 
@@ -22,7 +23,9 @@ public class SensitiveHandlerTest {
     @Test
     public void test3(){
         EmailSensitiveHandler nameSensitiveHandler = new EmailSensitiveHandler();
-        String result = nameSensitiveHandler.handle("er@ruubddfdfdfdypay.com");
+//        String result = nameSensitiveHandler.handle("er@ruubddfdfdfdypay.com");
+        String result = nameSensitiveHandler.handle("eSD٩( 'ω' )و get！F是r@163.com");
+//        String result = nameSensitiveHandler.handle("");
         System.out.println(result);
     }
     @Test

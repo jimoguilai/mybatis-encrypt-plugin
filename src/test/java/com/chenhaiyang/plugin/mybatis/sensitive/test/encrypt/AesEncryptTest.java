@@ -10,7 +10,7 @@ public class AesEncryptTest {
     @Test
     public void test() throws NoSuchAlgorithmException {
         String key="1870577f29b17d6787782f35998c4a79";
-        String src ="测试原文";
+        String src ="测试原文13*%$dfBD@`~.,、。，_=";
         AesSupport aesSupport = new AesSupport(key);
         String result = aesSupport.encrypt(src);
         System.out.println(result);

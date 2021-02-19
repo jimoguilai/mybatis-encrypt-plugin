@@ -20,8 +20,8 @@ public class MapperTestCase {
     @PostConstruct
     public void init(){
         //sql条件是预编译的
-        //testInsert1();
-       // testinsert2();
+//        testInsert1();
+//        testinsert2();
       testfinbyAll1();
         testfinbyAll2();
 //        testfinbyId1();

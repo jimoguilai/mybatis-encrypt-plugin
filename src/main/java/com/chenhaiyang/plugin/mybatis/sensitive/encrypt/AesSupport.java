@@ -15,10 +15,11 @@ import java.security.SecureRandom;
 
 /**
  * 数据脱敏用到的AES加解密类
+ *
  * @author chenhaiyang
  */
 @Slf4j
-public class AesSupport implements Encrypt{
+public class AesSupport implements Encrypt {
 
     private static final String KEY_ALGORITHM = "AES";
     private static final String DEFAULT_CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
@@ -29,7 +30,7 @@ public class AesSupport implements Encrypt{
 
     public AesSupport(String password) throws NoSuchAlgorithmException {
 
-        if(StringUtils.isEmpty(password)){
+        if (StringUtils.isEmpty(password)) {
             throw new IllegalArgumentException("password should not be null!");
         }
 
@@ -38,9 +39,9 @@ public class AesSupport implements Encrypt{
     }
 
     @Override
-    public String encrypt(String value){
+    public String encrypt(String value) {
 
-        try{
+        try {
             Cipher cipher = Cipher.getInstance(DEFAULT_CIPHER_ALGORITHM);
             cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
 
@@ -48,14 +49,14 @@ public class AesSupport implements Encrypt{
             byte[] encryptData = cipher.doFinal(content);
 
             return Hex.bytesToHexString(encryptData);
-        }catch (Exception e){
-            log.error("AES加密时出现问题，密钥为：{}",sensitiveTypeHandler.handle(password));
-            throw new IllegalStateException("AES加密时出现问题"+e.getMessage(),e);
+        } catch (Exception e) {
+            log.error("AES加密时出现问题，密钥为：{}", sensitiveTypeHandler.handle(password));
+            throw new IllegalStateException("AES加密时出现问题" + e.getMessage(), e);
         }
     }
 
     @Override
-    public String decrypt(String value){
+    public String decrypt(String value) {
         if (StringUtils.isEmpty(value)) {
             return "";
         }
@@ -65,15 +66,15 @@ public class AesSupport implements Encrypt{
             cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
             byte[] content = cipher.doFinal(encryptData);
             return new String(content, "UTF-8");
-        }catch (Exception e){
-            log.error("AES解密时出现问题，密钥为:{},密文为：{}",sensitiveTypeHandler.handle(password),value);
-            throw new IllegalStateException("AES解密时出现问题"+e.getMessage(),e);
+        } catch (Exception e) {
+            log.error("AES解密时出现问题，密钥为:{}，密文为：{}", sensitiveTypeHandler.handle(password), value);
+            throw new IllegalStateException("AES解密时出现问题" + e.getMessage(), e);
         }
 
     }
 
 
-    private static SecretKeySpec getSecretKey(final String password) throws NoSuchAlgorithmException{
+    private static SecretKeySpec getSecretKey(final String password) throws NoSuchAlgorithmException {
         //返回生成指定算法密钥生成器的 KeyGenerator 对象
         KeyGenerator kg = KeyGenerator.getInstance(KEY_ALGORITHM);
         //AES 要求密钥长度为 128

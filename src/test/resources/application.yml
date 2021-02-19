@@ -1,6 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mybatis_plugin_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
-    password: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis_encrypt_plugin?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
     username: root
+    password: 123456

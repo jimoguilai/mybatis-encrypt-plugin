@@ -1,0 +1,9 @@
+**/target/
+**/**/target/
+**/.idea/
+**/log/
+**/*.iml
+*.iml
+.txlcn/
+**/spy.log
+*/.DS_Store
