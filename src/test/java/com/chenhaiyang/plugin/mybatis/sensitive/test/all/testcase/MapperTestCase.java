@@ -18,65 +18,68 @@ public class MapperTestCase {
     private UserMapper userMapper;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         //sql条件是预编译的
-//        testInsert1();
+        testInsert1();
 //        testinsert2();
-      testfinbyAll1();
-        testfinbyAll2();
+//      testfinbyAll1();
+//        testfinbyAll2();
 //        testfinbyId1();
-  //      testfinbyConditon1();
-      //testUpdateByCondition1();
+        //      testfinbyConditon1();
+        //testUpdateByCondition1();
 
     }
 
     //=======以下的测试用例，sql都是预编译的==============
     private void testInsert1() {
         UserDTO userDTO = new UserDTO();
-        userDTO.setAge(1758695069);
-        userDTO.setEmail("238484@qq.com");
-        userDTO.setIdcard("130722199102900995");
-        userDTO.setIdcardSensitive("130722199102900995");
-        userDTO.setUserName("张三丰");
-        userDTO.setUserNameSensitive("张三丰");
+        userDTO.setAge(15);
+        userDTO.setEmail("asdfa444@qq.com");
+        userDTO.setIdcard("130722199102904562");
+        userDTO.setIdcardSensitive("130722199102901122");
+        userDTO.setUserName("李珊珊");
+        userDTO.setUserNameSensitive("李珊珊");
 
 
-        Map<String,Object> jsonMap = new HashMap<>();
-        jsonMap.put("username","张三丰");
-        jsonMap.put("idcard","13072219991947585896");
-        jsonMap.put("age",18);
+        Map<String, Object> jsonMap = new HashMap<>();
+        jsonMap.put("username", "王二332");
+        jsonMap.put("idcard", "13072219991947582222");
+        jsonMap.put("age", 18);
         userDTO.setJsonStr(JsonUtils.parseMaptoJSONString(jsonMap));
         int result = userMapper.insert(userDTO);
         System.out.println(result);
     }
+
     //这种传值方式，加解密和脱敏无法生效，必须基于javaBean
     private void testinsert2() {
-        int result = userMapper.insert2("马达哈","12222");
+        int result = userMapper.insert2("马达哈", "12222");
         System.out.println(result);
     }
 
 
     private void testfinbyAll1() {
 
-        List<UserDTO>  userDTOS = userMapper.findAll();
+        List<UserDTO> userDTOS = userMapper.findAll();
         System.out.println(userDTOS);
     }
+
     //此种方式是基于resultmap查询
     private void testfinbyAll2() {
-        List<UserDTO>  userDTOS = userMapper.findAll2();
+        List<UserDTO> userDTOS = userMapper.findAll2();
         System.out.println(userDTOS);
     }
 
     private void testfinbyId1() {
         UserDTO userDTO = new UserDTO();
         userDTO.setId(41);
-        UserDTO   userDTO2 = userMapper.findOne(userDTO);
+        UserDTO userDTO2 = userMapper.findOne(userDTO);
         System.out.println(userDTO2);
     }
+
     private void testfinbyConditon1() {
         UserDTO userDTO = new UserDTO();
         userDTO.setIdcard("130722199102900995");
-        List<UserDTO>   userDTO2 = userMapper.findByCondition(userDTO);
+        List<UserDTO> userDTO2 = userMapper.findByCondition(userDTO);
         System.out.println(userDTO2);
     }
 

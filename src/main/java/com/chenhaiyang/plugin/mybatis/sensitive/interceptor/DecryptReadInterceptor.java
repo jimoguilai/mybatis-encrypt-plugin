@@ -25,6 +25,10 @@ import java.util.*;
  * SQL样例：
  * 1. UPDATE tbl SET x=?, y =
  *
+ * https://github.com/jimoguilai/mybatis-encrypt-plugin
+ * 实现原理：
+ * 1，拦截mybatis的StatementHandler 对读写请求进行脱敏和字段的加密。
+ * 2，拦截mybatis的ResultSetHandler，对读请求的响应进行加密字段的解密赋值。
  * @author ;
  */
 @Intercepts({

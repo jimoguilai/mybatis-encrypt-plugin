@@ -22,6 +22,15 @@ import java.util.*;
 
 /**
  * 拦截写请求的插件。插件生效仅支持预编译的sql
+ *
+ * 实现原理：
+ * 1，拦截mybatis的StatementHandler 对读写请求进行脱敏和字段的加密。
+ * 2，拦截mybatis的ResultSetHandler，对读请求的响应进行加密字段的解密赋值。
+ *
+ * https://blog.csdn.net/lsqingfeng/article/details/113173379?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&dist_request_id=41b42654-8a1a-496d-9734-325690cc4a34&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control
+ * 接下来就是拦截器的写法了，mybatis给我们提供了对应的插件扩展，对于mybatis-plus同样适用。
+ * mybatis在插入的时候有一个方法叫做setParameter, 会对参数做设置， 查询的时候有一个方法叫做handleResultSet,
+ * 会对结果做操作，我们只需要拦截这两个请求，设置参数的时候，加密敏感字段；操作结果的时候，解密敏感字段即可。
  * @author ;
  */
 @Intercepts({

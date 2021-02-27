@@ -16,7 +16,7 @@ public class EncryptPluginConfig {
 
 
     @Bean
-    Encrypt encryptor() throws Exception{ ;
+    Encrypt encryptor() throws Exception{
        return new AesSupport("1870577f29b17d6787782f35998c4a79");
     }
 
